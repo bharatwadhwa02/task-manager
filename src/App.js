@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Navigate,
+  Route,
+} from "react-router-dom";
+//pages
+import Home from "./pages/Home";
+import CreateList from "./pages/CreateList";
+import ParticularList from "./pages/ParticularList";
+import NewTask from "./pages/NewTask";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate replace to={"/lists"} />}></Route>
+        <Route path="/lists" element={<Home />} />
+        <Route path="/new-list" element={<CreateList />} />
+        <Route path="/lists/:listId" element={<Home />} />
+        <Route path="/lists/:listId/new-task" element={<NewTask />} />
+      </Routes>
+    </Router>
   );
 }
 
